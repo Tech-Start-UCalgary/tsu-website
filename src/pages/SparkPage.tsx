@@ -11,6 +11,7 @@ import MenuButton from "components/TechSpark/MenuButton"
 import Post from "components/TechSpark/post"
 import { EventType } from "./EventType"
 import { PostType } from "./PostType"
+import WelcomeBanner from 'components/TechSpark/WelcomeBanner';
 
 function Dashboard() {
 
@@ -147,22 +148,14 @@ function Dashboard() {
         <div className="sparkBackground" id="sparkPageTop">
             {displayPost && <Popup windowType={windowType} hidePost={hidePost} />}
             <div>
-
-                <div className="sparkTitle">
-                    Community
-        </div>
-                <div className="sparkMissionStatement">
-                    Tech Start's community page helps University of Calgary students stay up to date with the latest news in technology and startups. We've partnered with the Hunter Hub to show news and events from within the University and from abroad.
-
-                    In the "See what people are saying" section, you can post your ideas, projects, requests, and connect with other students. It's a great way to find projects, collaborators, or make connections with like-minded students!
-        </div>
+                <WelcomeBanner userName="Niyousha" showPost={showPost} showSignIn={showSignIn} /> {/* default value for now, needs to be dynamic */}
                 <div className="sparkOuterGrid">
                     <div className="sparkMenuContainer sparkContentPage">
                         <div className="sparkContentTitle">
                             Menu
-            </div>
+                        </div>
                         <div className="sparkMenuGrid">
-                            <MenuButton text={"Sign in"} showPost={showPost} showSignIn={showSignIn} />
+                            {/*<MenuButton text={"Sign in"} showPost={showPost} showSignIn={showSignIn} />*/}
                             {/* <MenuButton text={"Profile"} />
                             <MenuButton text={"Post History"} /> */}
 
@@ -177,7 +170,7 @@ function Dashboard() {
                     <div className="sparkContentPage">
                         <div className="sparkContentTitle">
                             See what people are saying:
-            <div className="sparkInnerGrid">
+                            <div className="sparkInnerGrid">
                                 <PostButton showPost={showPost} showPostCreation={showPostCreation} />
                                 {postList}
                             </div>

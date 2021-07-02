@@ -40,12 +40,7 @@
     border: none;
     background:#282A36;
 }
-.sparkTitle{
-    font-family: 'Inter', Tahoma, sans-serif;
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-}
+
 .sparkContentTitle{
     font-family: 'Inter', Tahoma, sans-serif;
     text-align: left;
@@ -65,16 +60,7 @@
     grid-row: span 2;
     min-width: max-content;
 }
-.sparkMissionStatement{
-    background-color: #282A36;
-    color: #99E755;
-    text-align: center;
-    font-weight: 500;
-    font-size: large;
-    padding: 20px;
-    padding-left: 80px;
-    padding-right: 80px;
-}
+
 @media only screen and (max-width:600px) {
     .sparkMissionStatement{
         font-size: small;

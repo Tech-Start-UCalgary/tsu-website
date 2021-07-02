@@ -60,11 +60,11 @@ function Header(props: any) {
                         link="/resources"
                         name="Resources"
                     />
-                    {/* <NavbarLink
+                    <NavbarLink
                         top="sparkPageTop"
                         link="/community"
                         name="Community"
-                    /> */}
+                    />
                 </ul>
             </nav>
             <label htmlFor="navbar__nav-toggle" className="navbar__nav-toggle-label">
