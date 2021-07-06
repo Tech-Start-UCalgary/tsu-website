@@ -17,6 +17,7 @@ function Dashboard() {
     const [newsCategories, setNewsCategories] = React.useState([]);
 
     const [news, setNews] = React.useState([])
+    const [userName, setUserName] = React.useState("")
 
     const dataRoot = "https://techstartbackend.herokuapp.com"
     const [token, setToken] = React.useState([]);
@@ -143,9 +144,13 @@ function Dashboard() {
         setWindowType(2)
     }
 
+    function handleLogin(name: string){
+        setUserName(name);
+    }
+
     return (
         <div className="sparkBackground" id="sparkPageTop">
-            {displayPost && <Popup windowType={windowType} hidePost={hidePost} />}
+            {displayPost && <Popup windowType={windowType} hidePost={hidePost} setName = {handleLogin}/>}
             <div>
 
                 <div className="sparkTitle">

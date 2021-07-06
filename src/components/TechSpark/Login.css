@@ -58,10 +58,9 @@
 }
 
 .alert{
-    background-color: #ffb6b9;
     padding: 4px;
     border-radius: 7px;
-    color: #282c34;
+    color: #ffb6b9;
     font-size: small;
     text-align: center;
     margin: 0px 10%;
@@ -138,5 +137,7 @@ input[id=loginSubmit]{
 }
 
 input:-webkit-autofill{
+    box-shadow: none;
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+    
 }

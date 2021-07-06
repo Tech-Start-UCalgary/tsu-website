@@ -121,10 +121,9 @@
 }
 
 .registerAlert {
-  background-color: #ffb6b9;
+  color: #ffb6b9;
   padding: 4px;
   border-radius: 7px;
-  color: #282c34;
   font-size: small;
   text-align: center;
   margin: 0px 10%;

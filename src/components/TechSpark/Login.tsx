@@ -1,59 +1,61 @@
 import "./Login.css"
-import React, { Component, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import axios from "axios";
 
 const dataRoot = "https://techstartbackend.herokuapp.com"
 
-function Login(props) {
+function Login(props: any) {
 
     const [tracker, setTracker] = React.useState(false)
-    const [invalidUsername, setInvalidUsername] = React.useState(false)
-    const [invalidPassword, setInvalidPassword] = React.useState(false)
+    // const [invalidUsername, setInvalidUsername] = React.useState(false)
+    // const [invalidPassword, setInvalidPassword] = React.useState(false)
     const [invalidLogin, setInvalidLogin] = React.useState(false)
+    const [message, setMessage] = React.useState("")
     const firstUpdate = useRef(true);
     useLayoutEffect(() => {
+        let username = document.getElementById('loginUsername')
+        let password = document.getElementById('loginPassword')
         setInvalidLogin(false);
         if (firstUpdate.current) {
             firstUpdate.current = false;
             return;
         }
-        if (document.getElementById('loginUsername').value == "") {
-            console.log('Invalid Username')
-            setInvalidUsername(true);
-            setInvalidPassword(false);
+        if (!username) {
+            setInvalidLogin(true);
+            setMessage("**You have entered an invalid username**");
             return;
-        } else {
-            {
-                setInvalidUsername(false);
-            }
-        }
-        if (document.getElementById('loginPassword').value == "") {
-            console.log('Invalid Password')
-            setInvalidPassword(true);
+        } else if (!password) {
+            setInvalidLogin(true);
+            setMessage("**You have entered an invalid password**");
             return;
-        } else {
-            setInvalidPassword(false);
-        }
+        } 
         axios.post(
             `${dataRoot}/login`, {
-            username: document.getElementById('loginUsername').value,
-            password: document.getElementById('loginPassword').value
+            username: (username as HTMLFormElement).value,
+            password: (password as HTMLFormElement).value
         }
         ).then((response) => {
 
-            let token = response.data.token;
+            // let token = response.data.token;
             props.hide();
-            console.log(token)
+            props.name(response.data.first);
 
         }, (error) => {
-            console.log(error);
+            console.log("Error is ", error);
             setInvalidLogin(true);
+            if (error.response.data.username){
+                setMessage("**Username must not be blank**")
+            }else if (error.response.data.password){
+                setMessage("**Password must not be blank**")
+            } else if(error.response.data.non_field_errors){
+                setMessage("**" + error.response.data.non_field_errors + "**")
+            }
 
 
         });
     }, [tracker]);
 
-    function handleLogin(event) { // The event parameter will automatically be passed by React's onClick - read more at https://reactjs.org/docs/events.html
+    function handleLogin(event: any) { // The event parameter will automatically be passed by React's onClick - read more at https://reactjs.org/docs/events.html
         event.preventDefault(); // This makes it so that pressing the button does not reload the page
         // Additionally, right now we are using document.getElementById to pass the results to the useEffect. This is theoretically functional, but it's not the best practice in React.
         // https://reactjs.org/docs/forms.html#handling-multiple-inputs This is a great alternative way of doing it using form names + state. 
@@ -91,17 +93,9 @@ function Login(props) {
                 <div id="clearLogin" />
                 
             </div>
-            {invalidUsername ?
-                    <div className = "alert"> 
-                    <p className = "alertMessage">You have entered an invalid username</p>
-                    </div>  : <div />}
-                {invalidPassword ?
-                    <div className = "alert">
-                        <p className = "alertMessage">You have entered an invalid password</p>
-                    </div> : <div />}
                 {invalidLogin ?
                     <div className = "alert">
-                        <p className = "alertMessage">You have entered an invalid username or password</p>
+                        <p className = "alertMessage">{message}</p>
                     </div>  : <div />}
         </div>
     );

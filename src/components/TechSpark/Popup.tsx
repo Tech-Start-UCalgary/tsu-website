@@ -8,6 +8,9 @@ function Popup(props : any){
         console.log("Popup hidden")
         props.hidePost()
     }
+    function sendName(userName: string){
+        props.setName(userName)
+    }
     function displayChild(){
             switch(props.windowType){
             case 1:
@@ -20,7 +23,8 @@ function Popup(props : any){
                 console.log("Login clicked")
                 return(
                     <SignIn
-                        close = {hideChild}/>
+                        close = {hideChild}
+                        handleName = {sendName}/>
                 )
             default:
                 console.log("Default rendered")

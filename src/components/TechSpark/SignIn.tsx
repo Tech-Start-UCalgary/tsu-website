@@ -10,6 +10,10 @@ function SignIn(props: any) {
         setIsLoginMode(!isLoginMode)
     }
 
+    function handleUserName(name : string){
+        props.handleName(name);
+    }
+
     return (
         <div className={"signInBackground " + (isLoginMode ? "signInBackground--loginMode" : "signInBackground--registerMode")}>
             {isLoginMode ?
@@ -17,6 +21,7 @@ function SignIn(props: any) {
                     <div><Login
                         switchMode={handleClick}
                         hide={props.close}
+                        name = {handleUserName}
                     /></div></div>
                 :
                 <div><div className="registerHeaderDiv"><div className="registerDesign"></div><Register
